@@ -2,7 +2,7 @@ import {View, Text, StyleSheet, FlatList} from 'react-native';
 import React from 'react';
 import GameCard from './GameCard';
 import {useSelector} from 'react-redux';
-import {GameState} from '../redux/gameSlice';
+import {GameState} from '../interfaces/interfaces';
 
 const Home = () => {
   const gameData = useSelector((state: GameState) => state.games);

@@ -8,15 +8,7 @@ import {
   ToastAndroid,
   ScrollView,
 } from 'react-native';
-interface GameCardInterface {
-  title: string;
-  steamUrl: string;
-  publisher: string;
-  genre: string;
-  status: string;
-  highlightsSupported: boolean;
-  fullyOptimized: boolean;
-}
+import {Game} from '../interfaces/interfaces';
 
 const GameCard = ({
   title,
@@ -26,7 +18,7 @@ const GameCard = ({
   status,
   highlightsSupported,
   fullyOptimized,
-}: GameCardInterface) => {
+}: Game) => {
   //last ele which is app id
   const appId = steamUrl?.split('/').pop();
   const imageUrl = `https://steamcdn-a.akamaihd.net/steam/apps/${appId}/library_600x900_2x.jpg`;
@@ -43,15 +35,9 @@ const GameCard = ({
   return (
     <Pressable onPress={showToast}>
       <ScrollView horizontal style={styles.cardContainer}>
-        {/* <Pressable > */}
         <Image source={{uri: imageUrl}} style={styles.image} />
         <View style={styles.cardContent}>
-          <Text
-            style={styles.title}
-            lineBreakMode="tail"
-            // numberOfLines={2}
-            // ellipsizeMode="tail"
-          >
+          <Text style={styles.title} lineBreakMode="tail">
             {title}
           </Text>
           <Text style={styles.publisher}>{publisher}</Text>

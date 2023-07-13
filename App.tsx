@@ -5,9 +5,6 @@ import {store} from './redux/store';
 import Home from './components/Home';
 
 const App = (): JSX.Element => {
-  // const isDarkMode = useColorScheme() === 'dark';
-  // console.log(isDarkMode);
-
   return (
     <Provider store={store}>
       <SafeAreaView>
