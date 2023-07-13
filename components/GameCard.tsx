@@ -1,5 +1,13 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  Pressable,
+  ToastAndroid,
+  ScrollView,
+} from 'react-native';
 
 interface GameCardInterface {
   title: string;
@@ -28,29 +36,42 @@ const GameCard = ({
   if (!genres[genres?.length - 1]) {
     genres.pop();
   }
-  // console.log(genres);
+
+  const showToast = () => {
+    ToastAndroid.show(`You selected ${title}`, ToastAndroid.SHORT);
+  };
   return (
-    <TouchableOpacity style={styles.cardContainer}>
-      <Image source={{uri: imageUrl}} style={styles.image} />
-      <View style={styles.cardContent}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.publisher}>{publisher}</Text>
-        <View style={styles.genreContainer}>
-          {genres?.map((genreItem, index) => (
-            <View key={index} style={styles.genrePill}>
-              <Text style={styles.genreText}>{genreItem.trim()}</Text>
-            </View>
-          ))}
+    <Pressable onPress={showToast}>
+      <ScrollView horizontal style={styles.cardContainer}>
+        {/* <Pressable > */}
+        <Image source={{uri: imageUrl}} style={styles.image} />
+        <View style={styles.cardContent}>
+          <Text
+            style={styles.title}
+            lineBreakMode="tail"
+            // numberOfLines={2}
+            // ellipsizeMode="tail"
+          >
+            {title}
+          </Text>
+          <Text style={styles.publisher}>{publisher}</Text>
+          <View style={styles.genreContainer}>
+            {genres?.map((genreItem, index) => (
+              <View key={index} style={styles.genrePill}>
+                <Text style={styles.genreText}>{genreItem.trim()}</Text>
+              </View>
+            ))}
+          </View>
+          <Text style={styles.highlights}>
+            Highlights: {highlightsSupported ? 'Supported' : 'Not Supported'}
+          </Text>
+          <Text style={styles.optimized}>
+            Fully Optimized: {fullyOptimized ? 'Yes' : 'No'}
+          </Text>
+          <Text style={styles.status}>{status}</Text>
         </View>
-        <Text style={styles.highlights}>
-          Highlights: {highlightsSupported ? 'Supported' : 'Not Supported'}
-        </Text>
-        <Text style={styles.optimized}>
-          Fully Optimized: {fullyOptimized ? 'Yes' : 'No'}
-        </Text>
-        <Text style={styles.status}>{status}</Text>
-      </View>
-    </TouchableOpacity>
+      </ScrollView>
+    </Pressable>
   );
 };
 

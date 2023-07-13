@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  StyleSheet,
-  // useColorScheme,
-  FlatList,
-} from 'react-native';
+import {View, Text, SafeAreaView, StyleSheet, FlatList} from 'react-native';
 import GameCard from './components/GameCard';
 const gameData = require('./gamedata/gameData.json');
 
@@ -21,15 +14,7 @@ const App = (): JSX.Element => {
         <Text style={styles.description}>See all the list of games here</Text>
         <FlatList
           data={gameData}
-          renderItem={({item, separators}) => (
-            <GameCard
-              // onPress={() => this._onPress(item)}
-              // onShowUnderlay={separators.highlight}
-              // onHideUnderlay={separators.unhighlight}
-              key={item.id}
-              {...item}
-            />
-          )}
+          renderItem={({item}) => <GameCard key={item.id} {...item} />}
         />
       </View>
     </SafeAreaView>
@@ -38,10 +23,8 @@ const App = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: 'lightblue',
   },
   heading: {
     color: 'red',
