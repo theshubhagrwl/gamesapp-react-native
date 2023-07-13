@@ -8,7 +8,6 @@ import {
   ToastAndroid,
   ScrollView,
 } from 'react-native';
-
 interface GameCardInterface {
   title: string;
   steamUrl: string;
@@ -40,6 +39,7 @@ const GameCard = ({
   const showToast = () => {
     ToastAndroid.show(`You selected ${title}`, ToastAndroid.SHORT);
   };
+
   return (
     <Pressable onPress={showToast}>
       <ScrollView horizontal style={styles.cardContainer}>
